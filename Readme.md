@@ -29,7 +29,7 @@ kdx auth login
 export default {
   run(args, { run }) {
     console.log('running init command')
-    askTeamAndBaseUrl().then(({baseurl, team}) => {
+    return askTeamAndBaseUrl().then(({baseurl, team}) => {
       return run(
         ['auth', 'login', '--baseurl', baseurl, '--team', team]
       )
