@@ -28,5 +28,8 @@
   },
   "directories": {
     "test": "test"
+  },
+  "dependencies": {
+    "lodash.find": "^4.6.0"
   }
 }
