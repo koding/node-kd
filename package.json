@@ -2,6 +2,9 @@
   "name": "kd",
   "version": "0.0.0",
   "main": "lib/index.js",
+  "bin": {
+    "kdx": "bin/cli.js"
+  },
   "repository": "git+ssh://git@github.com/koding/node-kd.git",
   "author": "Umut Sirin <umutsirin1@gmail.com>",
   "license": "MIT",
@@ -14,6 +17,7 @@
     "clean": "rm -rf lib",
     "build:lib": "babel ./src --out-dir ./lib",
     "build": "npm run build:lib",
+    "run-cli": "npm run build && babel-node bin/cli.js",
     "test": "./node_modules/mocha/bin/_mocha --reporter spec --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch",
     "prepublish": "npm run clean && npm run build",
