@@ -19,9 +19,6 @@ export default class ProcessRunner {
   }
 
   cmd(subcmd, options) {
-    if ('function' === typeof options) {
-      options = { run: options }
-    }
     this._subcommands[subcmd] = options
   }
 
