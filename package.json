@@ -34,6 +34,8 @@
     "test": "test"
   },
   "dependencies": {
-    "lodash.find": "^4.6.0"
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
+    "require-all": "^2.2.0"
   }
 }
