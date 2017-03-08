@@ -1,6 +1,9 @@
 import child_process from 'child_process'
 import { Buffer } from 'buffer'
 import find from 'lodash.find'
+import set from 'lodash.set'
+import get from 'lodash.get'
+
 
 export default class ProcessRunner {
 
@@ -9,35 +12,33 @@ export default class ProcessRunner {
     this.dir = options.dir
     this.queue = []
     this._process = null
-    this._subcommands = {}
-
-    if (options.commands) {
-      Object.keys(options.commands).forEach(cmd => {
-        this.cmd(cmd, options.commands[cmd])
-      })
-    }
+    this._subcommands = options.commands || {}
   }
 
-  cmd(subcmd, options) {
-    this._subcommands[subcmd] = options
-  }
-
-  isRunning() {
-    return !!this._process
-  }
-
-  setProcess(p) {
-    this._process = p
+  set(path, value) {
+    set(this._subcommands, path, value)
     return this
   }
 
-  getCommand(args) {
-    const argsString = args.join(' ')
-    const cmd = find(this._subcommands, (val, key) => {
-      return (new RegExp(key)).test(argsString)
-    })
+  get(path) {
+    return get(this._subcommands, path) || {}
+  }
 
-    return cmd || {}
+  cmd(subcmd, options) {
+    this.set(subcmd.split(' '), options)
+  }
+
+  getCommand(args) {
+    for (let i = 0, ll = args.length; i < ll; i++) {
+      const path = args.slice(0, ll - i)
+      const cmd = this.get(path)
+
+      if (isCmd(cmd)) {
+        return cmd
+      }
+    }
+
+    return {}
   }
 
   run(args) {
@@ -108,6 +109,16 @@ export default class ProcessRunner {
       }
     })
   }
+
+  isRunning() {
+    return !!this._process
+  }
+
+  setProcess(p) {
+    this._process = p
+    return this
+  }
+
 }
 
 const toArray = thing => {
@@ -142,4 +153,6 @@ const toString = thing => {
 
   }, '')
 }
+
+const isCmd = cmd => cmd && (cmd.run || cmd.before || cmd.after)
 
