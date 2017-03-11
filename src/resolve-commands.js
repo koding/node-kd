@@ -26,7 +26,7 @@ const req = dirname => {
 
 const projectDir = () => {
   return new Promise(resolve => {
-    return gitDir().then(resolve).catch(resolve)
+    return gitDir().then(resolve).catch(err => resolve(null))
   })
 }
 
@@ -36,10 +36,15 @@ const resolvePaths = () => {
     Promise.resolve(homeDir()),
     Promise.resolve(__dirname),
   ]).then(([project, home, globals]) => {
-    return {
-      local: path.join(project, COMMANDS_PATH),
+    let paths = {
       user: path.join(home, COMMANDS_PATH),
       global: path.join(globals, 'commands'),
     }
+
+    if (project) {
+      paths.local = path.join(project, COMMANDS_PATH)
+    }
+
+    return paths
   })
 }
