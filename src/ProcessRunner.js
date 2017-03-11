@@ -1,6 +1,5 @@
 import child_process from 'child_process'
 import { Buffer } from 'buffer'
-import find from 'lodash.find'
 import set from 'lodash.set'
 import get from 'lodash.get'
 

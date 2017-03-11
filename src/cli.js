@@ -1,16 +1,13 @@
 import KD from './'
-import requireAll from 'require-all'
+import ensure from './ensure'
+import resolveCommands from './resolve-commands'
 
-const commands = requireAll({
-  dirname: `${__dirname}/commands`,
-  resolve: command => command.default,
-})
+const args = process.argv.slice(2)
 
-const kd = KD({
-  commands: commands
-})
-
-kd.run(process.argv.slice(2))
+resolveCommands()
+  .then(commands => {
+    const kd = KD({ commands })
+    return ensure(args).then(() => kd.run(args))
+  })
   .then(console.log.bind(console))
   .catch(console.error.bind(console))
-
