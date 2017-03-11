@@ -35,10 +35,13 @@
   },
   "dependencies": {
     "command-exists": "^1.2.2",
+    "git-toplevel": "^1.1.1",
+    "homedir": "^0.6.0",
     "inquirer": "^3.0.6",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "ora": "^1.1.0",
+    "path-exists": "^3.0.0",
     "require-all": "^2.2.0"
   }
 }
