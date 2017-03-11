@@ -9,10 +9,10 @@
   "author": "Umut Sirin <umutsirin1@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/usirin/simple-boilerplate-babel/issues"
+    "url": "https://github.com/koding/node-kd/issues"
   },
-  "homepage": "https://github.com/usirin/simple-boilerplate-babel#readme",
-  "description": "kd cli tool.",
+  "homepage": "https://github.com/koding/node-kd#readme",
+  "description": "Wrapper around kd cli tool to extend it.",
   "scripts": {
     "clean": "rm -rf lib",
     "build:lib": "babel ./src --out-dir ./lib",
