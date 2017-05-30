@@ -38,8 +38,11 @@
     "git-toplevel": "^1.1.1",
     "homedir": "^0.6.0",
     "inquirer": "^3.0.6",
+    "koding-api": "^0.0.3-2",
+    "lodash.find": "^4.6.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
+    "minimist": "^1.2.0",
     "ora": "^1.1.0",
     "path-exists": "^3.0.0",
     "require-all": "^2.2.0"
